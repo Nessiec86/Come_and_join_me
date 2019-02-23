@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const expressLayouts = require('express-ejs-layouts');
+//const session = require('express-session');
+//const moongoose = require('moongoose');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -12,13 +15,16 @@ const app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('layout', 'layouts/layout');
+
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(expressLayouts);
+ 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
