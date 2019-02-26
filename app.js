@@ -8,7 +8,7 @@ const expressLayouts = require('express-ejs-layouts');
 //const moongoose = require('moongoose');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const tripsRouter = require('./routes/trips');
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
  
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/trips', tripsRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
