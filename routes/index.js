@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+//exportar user models
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
