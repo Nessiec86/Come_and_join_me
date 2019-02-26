@@ -184,32 +184,34 @@ Trip feedback:
 Trip Model
 ```javascript
 {
-_id: ObjectId,
-tripName: String, required: true, default: 'new trip',
-type: {type:String, enum:['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
-date: Date,
-duration: Number,
-description: String,
-difficulty: Number,
-listOfParticipants: [ObjectId, ref: 'Users'],
-organizer: [ObjectId, ref: 'users'],
-necessaryEquipment: [String],
-petfriendly: Boolean,
-geolocation: String,
-
+  tripName: { type: String, required: true, default: 'new trip' },
+  type: { type: String, enum: ['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
+  date: Date,
+  duration: Number,
+  description: String,
+  difficulty: Number,
+  listOfParticipants: { type: ObjectId, ref: 'Users' },
+  organizer: { type: ObjectId, ref: 'Users' },
+  necessaryEquipment: [String],
+  _id: { type: ObjectId },
+  petfriendly: Boolean,
+  geolocation: String,
 }
+
 ```
 User Model
 ```javascript
 {
-_id: ObjectId,
-username: String, required: true,
-firstName: String, required: true,
-surname: String, required: true,
-eMail: String, required: true,
-TripIdCreated: [ObjectId, ref:'trip'],
-TripIdJoined: Array
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  firstName: { type: String, required: true },
+  surname: { type: String, required: true },
+  eMail: { type: String, required: true },
+  TripIdCreated: {type: ObjectId, ref:'trip'},
+  TripIdJoined: Array,
+  _id: { type: ObjectId },
 }
+
 ```
 
 ## Links
