@@ -63,17 +63,17 @@ Trip feedback:
 | GET         | /login |redirects to /signup if user don't have account|
 | POST        | /login |redirects to /signup if user don't hace account|
 | GET         | /:userid    | Renders the userpage|
-| GET         | /:userid/createtrip | 
-| POST        | /:userid/createtrip |
-| GET         | /:userid/tripsicreated |
-| GET         | /:userid/tripsicreated/:tripid |
-| GET         | /:userid/tripsisignedin |
-| GET         | /:userid/tripsisignedin/:tripid |
-| GET         | /:userid/search |
-| POST        | /:userid/search |
-| GET         | /:userid/search/searchresults |
-| GET         | /:userid/search/searchresults/:tripid |
-| GET         | /:userid/profile |
+| GET         | /:userid/createtrip | redirects to /home if user is anonymous |
+| POST        | /:userid/createtrip | render trip details
+| GET         | /:userid/tripsicreated | redirect to /user/:userid/tripsicreated details |
+| GET         | /:userid/tripsicreated/:tripid | renders the trip detail page |
+| GET         | /:userid/tripsisignedin | render the (trip I signed in) list page |
+| GET         | /:userid/tripsisignedin/:tripid | renders the trip detail page |
+| GET         | /:userid/search | render search form |
+| POST        | /:userid/search | redirects to /:userid/search/searchresults |
+| GET         | /:userid/search/searchresults | render list of results based on the search criteria |
+| GET         | /:userid/search/searchresults/:tripid | render the trip |
+| GET         | /:userid/profile | render the user profile page |
 
 
 - GET /home
@@ -186,26 +186,29 @@ Trip Model
 ```javascript
 {
 _id: ObjectId,
-tripName: String required: true, default: 'new trip',
-type: [String],
+tripName: String, required: true, default: 'new trip',
+type: {type:String, enum:['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
 date: Date,
 duration: Number,
 description: String,
 difficulty: Number,
 listOfParticipants: [ObjectId, ref: 'Users'],
-organizer: ObjectId,
-necessaryEquipment: [String]
+organizer: [ObjectId, ref: 'users'],
+necessaryEquipment: [String],
+petfriendly: Boolean,
+geolocation: String,
+
 }
 ```
 User Model
 ```javascript
 {
 _id: ObjectId,
-username: String,
-firstName: String,
-surname: String,
-eMail: String,
-TripIdCreated: [ObjectId],
+username: String, required: true,
+firstName: String, required: true,
+surname: String, required: true,
+eMail: String, required: true,
+TripIdCreated: [ObjectId, ref:'trip'],
 TripIdJoined: Array
 }
 ```
@@ -220,7 +223,7 @@ TripIdJoined: Array
 
 The url to your repository and to your deployed project
 
-[Repository Link](http://github.com)
+[Repository Link](https://github.com/Nessiec86/Who_come)
 
 [Deploy Link](http://heroku.com)
 
