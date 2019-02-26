@@ -5,10 +5,19 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 //const session = require('express-session');
-//const moongoose = require('moongoose');
+const mongoose = require('mongoose');
 
 const indexRouter = require('./routes/index');
 const tripsRouter = require('./routes/trips');
+
+mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
+  .then(() => {
+    console.log('connected');
+  })
+  .catch((error) => {
+    console.log(error);
+    mongoose.connection.close();
+  });
 
 const app = express();
 
