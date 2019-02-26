@@ -72,7 +72,7 @@ Trip feedback:
 | GET         | /:userid/trips? | render search form |
 | POST        | /:userid/trips? | redirects to /:userid/trips? |
 | GET         | /:userid/trips? | render list of results based on the search criteria |
-| GET         | /:userid/trips?| render the trip |
+| GET         | /:userid/trips?/:tripid | render the trip |
 | GET         | /:userid/profile | render the user profile page |
 
 
@@ -172,7 +172,7 @@ Trip feedback:
   - redirects to /:userid/search/searchresults 
 - GET /:userid/trips?
   - render list of results based on the search criteria
-- GET /:userid/trips?
+- GET /:userid/trips?/:tripid
   - search :tripid and render the page
 - GET /:userid/profile 
   - render the user profile page
