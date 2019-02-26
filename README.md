@@ -58,31 +58,31 @@ Trip feedback:
 | Method      | Description | Test Text     |
 | :---        |    :----:   |          :---:|
 | GET         | /home       | Renders the homepage   |
-| GET         | /signup|redirects to /:userid if user logged in|
-| POST        | /signup|redirects to /:userid if user logged in|
-| GET         | /login |redirects to /signup if user don't have account|
-| POST        | /login |redirects to /signup if user don't hace account|
+| GET         | /signup| render signup form |
+| POST        | /signup| redirects to /:userid if user logged in |
+| GET         | /login | render login form |
+| POST        | /login | redirects to /signup if user don't hace account |
 | GET         | /:userid    | Renders the userpage|
-| GET         | /:userid/createtrip | redirects to /home if user is anonymous |
-| POST        | /:userid/createtrip | render trip details
-| GET         | /:userid/tripsicreated | redirect to /user/:userid/tripsicreated details |
-| GET         | /:userid/tripsicreated/:tripid | renders the trip detail page |
-| GET         | /:userid/tripsisignedin | render the (trip I signed in) list page |
-| GET         | /:userid/tripsisignedin/:tripid | renders the trip detail page |
-| GET         | /:userid/search | render search form |
-| POST        | /:userid/search | redirects to /:userid/search/searchresults |
-| GET         | /:userid/search/searchresults | render list of results based on the search criteria |
-| GET         | /:userid/search/searchresults/:tripid | render the trip |
+| GET         | /:userid/trips/new | render trip create form |
+| POST        | /:userid/trips/created | redirect to trips created details |
+| GET         | /:userid/trips/created | render the created trips page |
+| GET         | /:userid/trips/created/:tripid | renders the trip detail page |
+| GET         | /:userid/trips/joined | render the (trip I joined) list page |
+| GET         | /:userid/trips/joined/:tripid | renders the trip joined detail page |
+| GET         | /:userid/trips? | render search form |
+| POST        | /:userid/trips? | redirects to /:userid/trips? |
+| GET         | /:userid/trips? | render list of results based on the search criteria |
+| GET         | /:userid/trips?| render the trip |
 | GET         | /:userid/profile | render the user profile page |
 
 
 - GET /home
   - renders the homepage
 - GET /auth/signup
-  - redirects to /home if user logged in
+  - redirects to /:userid if user logged in
   - renders the signup form
 - POST /auth/signup
-  - redirects to /home if user logged in
+  - redirects to /:userid if user logged in
   - body:
     - username
     - firstname
@@ -96,10 +96,9 @@ Trip feedback:
   - store user in session
   - redirect to /user
 - GET /auth/login
-  - redirects to /home user logged in
   - renders the login form
 - POST /auth/login
-  - redirects to /home if user logged in
+  - redirects to /:userid if user logged in
   - body:
     - username
     - password
@@ -116,7 +115,7 @@ Trip feedback:
 - GET /:userid
   - redirects to /home if user is anonymous
   - renders user profile + control buttons
-- GET /:userid/createtrip 
+- GET /:userid/trips/new 
   - redirects to /home if user is anonymous
   - trip model: 
     - name
@@ -130,11 +129,11 @@ Trip feedback:
     - necessary equipment
   - validation
     - fields not empty
-- POST /:userid/createtrip
+- POST /:userid/trips/new
   - create trip
-  - redirect to /user/:userid/tripsicreated details
+  - redirect to /:userid/trips/created details
 
-- GET /user/:userid/tripsicreated/:tripid
+- GET /:userid/trips/created/:tripid
   - redirects to /home if user is anonymous
   - validation
     - id is valid (next to 404)
@@ -142,7 +141,7 @@ Trip feedback:
   - renders the trip detail page
   - includes the list of attendees
   - attend button if user not attending yet
-- POST /user/:userid/tripsicreated/:tripid
+- POST /:userid/trips/created/:tripid
   - redirects to /home if user is anonymous
   - validation
     - id is valid (next to 404)
@@ -152,28 +151,28 @@ Trip feedback:
   - store if not there yet
   - redirect to /user/:userid details
 
-- GET  /:userid/tripsisignedin
+- GET  /:userid/trips/joined
   - redirects to /home if user is anonymous
   - validation
     - id is valid (next to 404)
     - id exists (next to 404)
   - render the (trip I signed in) list page
-- GET /:userid/tripsisignedin/:tripid
+- GET /:userid/trips/joined/:tripid
   - redirects to /home if user is anonymous
   - validation
     - id is valid (next to 404)
     - id exists (next to 404)
   - search :tripid and render the page
 
-- GET /:userid/search 
+- GET /:userid/trips?
   - redirects to /home if user is anonymous
   - render search form to filter trips
-- POST /:userid/search 
+- POST /:userid/trips? 
   - redirects to /home if user is anonymous
   - redirects to /:userid/search/searchresults 
-- GET /:userid/search/searchresults
+- GET /:userid/trips?
   - render list of results based on the search criteria
-- GET /:userid/search/searchresults/:tripid
+- GET /:userid/trips?
   - search :tripid and render the page
 - GET /:userid/profile 
   - render the user profile page
