@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const saltRounds = 10;
 const router = express.Router();
-//exportar user models
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -15,7 +14,7 @@ router.get('/signup', (req, res, next) => {
 });
   
 router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
-  const { username, password } = req.body;
+  const { username, surname, firstName, password, email } = req.body;
 
   if (username === '' || password === '') {
     return res.redirect('/signup');
@@ -28,9 +27,9 @@ router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
       } else {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(password, salt);
-        User.create({ username, password: hashedPassword })
+        User.create({ username, surname, firstName, password: hashedPassword, email })
           .then(() => {
-            res.redirect('/user');
+            res.redirect('/login');
           }).catch((error) => {
             next(error);
           });
@@ -46,6 +45,34 @@ router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
 
 router.get('/login', (req, res, next) => {
   res.render('auth/login');
+});
+
+router.post('/login', /*middlewares.anonRoute,*/ (req, res, next) => {
+  const { username, password } = req.body;
+  if (username === '' || password === '') {
+    //req.flash('error', 'no empty fields');
+    //req.flash('info', 'no empty fields');
+    return res.redirect('/login');
+  } else {
+    User.findOne({ username })
+      .then((user) => {
+        if (!user) {
+         // req.flash('error', 'usuario no existe');
+         console.log('usuario no existe');
+          return res.redirect('/login');
+        } else if (bcrypt.compareSync(password, user.password)) {
+          req.session.currentUser = user;
+          //req.flash('success', 'usuario logeado correctamente');
+          res.redirect('/index');
+        } else {
+          //req.flash('error', 'usuario incorrecto');
+          return res.redirect('/login');
+        }
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
 });
 
 module.exports = router;
