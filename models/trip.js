@@ -9,7 +9,7 @@ const tripSchema = new Schema({
     date: Date,
     duration: Number,
     description: String,
-    difficulty: Number,
+    difficulty: String,
     listOfParticipants: { type: ObjectId, ref: 'Users' },
     organizer: { type: ObjectId, ref: 'Users' },
     necessaryEquipment: [String],

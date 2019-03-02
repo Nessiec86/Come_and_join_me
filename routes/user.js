@@ -8,6 +8,7 @@ const router = express.Router();
 //     next()
 //    }) //crear carpeta de middlewares
 
+
 router.get('/', (req, res, next) => {
     const userID = res.locals.currentUser._id;
     res.render('user/user', { userID });
@@ -16,14 +17,59 @@ router.get('/', (req, res, next) => {
 
 router.get('/trips', (req, res, next) => {
     const userID = res.locals.currentUser._id;
-    Trip.find({ userID })
-      .then((trips) => {
-        res.render('trips/list', { trips });
+    res.render('trips/list', { userID });
+});
+
+router.get('/trips/new', (req, res, next) => {
+    const userID = res.locals.currentUser._id;
+    const tripCategory = Trip.schema.obj.type.enum;
+    res.render('trips/new', { userID, tripCategory });
+});
+
+router.post('/trips', (req, res, next) => {
+    const { tripName, description, duration, petfriendly, difficulty } = req.body;
+    const userID = req.session.currentUser._id;
+    Trip.create({
+      tripName,
+      description,
+      duration,
+      petfriendly,
+      difficulty,
+      userID,
+    })
+      .then(() => {
+        res.redirect('/user');
       })
       .catch((error) => {
         next(error);
       });
   });
+  
+
+
+  
+//   router.get('/', (req, res, next) => {
+//     const userID = res.locals.currentUser._id;
+//     Move.find({ userID })
+//       .then((moves) => {
+//         res.render('moves/list', { moves });
+//       })
+//       .catch((error) => {
+//         next(error);
+//       });
+//   });
+  
+
+// router.get('/trips', (req, res, next) => {
+//     const userID = res.locals.currentUser._id;
+//     Trip.find({ userID })
+//       .then((trips) => {
+//         res.render('trips/list', { trips });
+//       })
+//       .catch((error) => {
+//         next(error);
+//       });
+//   });
 
 
 
