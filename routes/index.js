@@ -8,6 +8,8 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   res.render('index');
 });
+
+
 // SIGN UP !
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup', /*{ errorMessage: req.flash('error') }*/);
@@ -63,7 +65,7 @@ router.post('/login', /*middlewares.anonRoute,*/ (req, res, next) => {
         } else if (bcrypt.compareSync(password, user.password)) {
           req.session.currentUser = user;
           //req.flash('success', 'usuario logeado correctamente');
-          res.redirect('/index');
+          res.redirect('/user');
         } else {
           //req.flash('error', 'usuario incorrecto');
           return res.redirect('/login');
