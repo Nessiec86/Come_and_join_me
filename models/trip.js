@@ -10,10 +10,12 @@ const tripSchema = new Schema({
     duration: Number,
     description: String,
     difficulty: String,
-    listOfParticipants: { type: ObjectId, ref: 'Users' },
-    organizer: { type: ObjectId, ref: 'Users' },
+    listOfParticipants: { type: ObjectId, ref: 'User' },
+    userID: {
+        type: ObjectId,
+        ref: 'User',
+    },
     necessaryEquipment: [String],
-    _id: { type: ObjectId },
     petfriendly: Boolean,
     geolocation: String,
 });

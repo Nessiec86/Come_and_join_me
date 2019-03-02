@@ -26,7 +26,7 @@ router.get('/trips/new', (req, res, next) => {
     res.render('trips/new', { userID, tripCategory });
 });
 
-router.post('/trips', (req, res, next) => {
+router.post('/trips/new', (req, res, next) => {
     const { tripName, description, duration, petfriendly, difficulty } = req.body;
     const userID = req.session.currentUser._id;
     Trip.create({
@@ -37,8 +37,8 @@ router.post('/trips', (req, res, next) => {
       difficulty,
       userID,
     })
-      .then(() => {
-        res.redirect('/user');
+      .then((createdObject) => {
+        res.redirect('/user', { userID });
       })
       .catch((error) => {
         next(error);
