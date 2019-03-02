@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', indexRouter);
-app.use('/', userRouter);
+app.use('/user', userRouter);
 app.use('/trips', tripsRouter);
 
 

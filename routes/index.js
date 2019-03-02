@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-
 // SIGN UP !
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup', /*{ errorMessage: req.flash('error') }*/);
@@ -42,9 +41,7 @@ router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
     });
 });
 
-
-
-
+// LOGIN!!
 router.get('/login', (req, res, next) => {
   res.render('auth/login');
 });
@@ -75,6 +72,13 @@ router.post('/login', /*middlewares.anonRoute,*/ (req, res, next) => {
         next(error);
       });
   }
+});
+
+//LOGOUT!!
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    res.redirect('/');
+  });
 });
 
 module.exports = router;

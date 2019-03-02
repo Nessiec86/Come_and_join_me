@@ -3,3 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: royalblue;
+  color: white;
+}
