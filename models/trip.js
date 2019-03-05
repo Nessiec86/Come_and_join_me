@@ -5,12 +5,12 @@ const { ObjectId } = Schema.Types;
 
 const tripSchema = new Schema({
     tripName: { type: String, required: true, default: 'new trip' },
-    type: { type: String, enum: ['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
+    tripCategory: { type: String, enum: ['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
     date: Date,
     duration: Number,
     description: String,
     difficulty: String,
-    listOfParticipants: { type: ObjectId, ref: 'User' },
+    listOfParticipants: [{type: ObjectId, ref: 'User'}],
     userID: {
         type: ObjectId,
         ref: 'User',

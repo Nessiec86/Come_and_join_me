@@ -3,11 +3,11 @@
 
 <h2>Create your own Trip</h2>
 
-<form action="/user/trips/new" method="post">
+<form action="/user/new" method="post">
   <label>Set trip category</label>
-  <select>
-    <% tripCategory.forEach((trip) => { %>
-      <option value="<%= trip %>"><%= trip %></option>
+  <select id="test">
+    <% tripCategory.forEach((category, i) => { %>
+      <option value="<%= category[i] %>" ><%= category %></option>
     <% }) %>
   </select>
   
