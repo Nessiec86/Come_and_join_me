@@ -9,8 +9,8 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 
 const indexRouter = require('./routes/index');
-const tripsRouter = require('./routes/trips');
 const userRouter = require('./routes/user');
+
 
 mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
   .then(() => {
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-app.use('/trips', tripsRouter);
+
 
 
 

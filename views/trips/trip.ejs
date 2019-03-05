@@ -1,0 +1,14 @@
+<%- include('../partials/nav') %>
+
+<div>
+<h2>Tu trip <%= trip.tripName %></h2>
+<p><%= trip.type %></p>
+<p><%= trip.description %></p>
+<p>List of participants: </p>
+
+<form action="/user/trips/<%= trip._id %> " method="post">
+  <button type="submit">Join</button>
+</form>
+
+
+</div>

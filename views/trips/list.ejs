@@ -1,17 +1,13 @@
 <%- include('../partials/nav') %>
     
 <h2>ALL TRIPS</h2>
-<div class="row">
-    <div class="col">
-        <ul class="list-group">
-            <% trips.forEach((trips) => { %>
-                <li class="list-group-item">
-                    <a href="/trips/<%= trip._id %>"><%= trip.tripName %></a>
-                    <form action="" method="post">
-                        <input type="submit" value="delete">
-                    </form>
-                </li>
-            <% })%>
-        </ul>
-    </div>
+<div>
+    <ul>
+        <% trips.forEach((trip) => { %>
+            <li>
+                <a href="/user/trips/<%= trip._id %>">                   
+                    <%=trip.tripName%>
+                </a>
+            </li><% }) %>
+    </ul>
 </div>

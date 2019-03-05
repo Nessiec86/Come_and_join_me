@@ -1,0 +1,19 @@
+<%- include('../partials/nav') %>
+
+<h2>Trips I created</h2>
+<div>
+  <ul>
+      <% trips.forEach((trip) => { %>
+          <li>
+              <a href="/user/created/<%= trip._id %>">                   
+                  <%=trip.tripName%>
+              </a><%=trip.description%>
+              <a href="/user/created/<%= trip._id %>/update">
+                Update
+              </a>
+              <form action="/user/created/<%= trip._id %>/delete" method="post">
+                <input type="submit" value="delete">
+              </form>
+          </li><% }) %>
+  </ul>
+</div>
