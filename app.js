@@ -7,6 +7,7 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes/index');
 const tripsRouter = require('./routes/trips');
@@ -45,6 +46,12 @@ app.use(session({
   cookie: {
     maxAge: 24 * 60 * 60 * 1000,
   },
+}));
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  indentedSyntax: false, // true = .sass and false = .scss
+	sourceMap: true, // true for .map; false no .map file
 }));
 
 app.use((req, res, next) => {
