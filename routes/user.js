@@ -41,7 +41,7 @@ router.post('/trips/:id', (req, res, next) => {
   Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: UserId }})
     .then((trips) => {
       console.log(trips);
-      res.render('/index');
+      res.render('user/user');
     })
     .catch((error) => {
       next(error);

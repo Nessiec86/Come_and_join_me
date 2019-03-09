@@ -1,0 +1,14 @@
+@import'./nav';
+
+body {
+  margin: 0 auto;
+  padding: 5% 0;
+  width: 95%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+@import'./home';
+@import'./signup';
+@import'./login';
+@import'./user';

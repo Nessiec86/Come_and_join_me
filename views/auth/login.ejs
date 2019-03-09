@@ -1,8 +1,24 @@
-<form id="form" action="/login" method="POST">
-    <label for="username">Username</label><br>
-    <input type="text" name="username" placeholder="Your username">
-  
-    <label for="password">Password</label><br>
-    <input type="password" name="password" placeholder="password">
-    <button type="submit">log in</button>
-  </form>
+<form class="needs-validation" novalidate id="form" action="/login" method="POST">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01">Username</label><br>
+      <input type="text" name="username" class="form-control" id="validationCustom01" placeholder="Your username" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Password</label><br>
+      <input type="password" name="password" class="form-control" id="validationCustom02" placeholder="password" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">log in</button>
+</form>
+<form action="/" id="form" method="GET">
+  <button class="btn btn-primary" type="submit">Return Home</button>
+</form>

@@ -22,5 +22,8 @@
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^1.18.10",
     "sass": "^1.17.2"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.3.1"
   }
 }
