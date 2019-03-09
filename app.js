@@ -1,3 +1,4 @@
+require("dotenv").config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -14,7 +15,8 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 
 
-mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
+//mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
+mongoose.connect(process.env.DB_URL)
   .then(() => {
     console.log('connected');
   })
