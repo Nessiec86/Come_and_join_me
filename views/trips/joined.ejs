@@ -1,0 +1,19 @@
+<%- include('../partials/nav') %>
+
+<h2>Trips I joined:</h2>
+
+<div>
+    <ul>
+        <% user.tripJoined.forEach((trip) => { %>
+            <li>                  
+                <%= trip.tripName %> 
+            </li><% }) %>
+    </ul>
+  </div>
+
+
+  
+      
+         
+
+

@@ -4,10 +4,9 @@
 <div>
   <ul>
       <% trips.forEach((trip) => { %>
-          <li>
-              <a href="/user/created/<%= trip._id %>">                   
-                  <%=trip.tripName%>
-              </a><%=trip.description%>
+          <li>                  
+              <%=trip.tripName%>
+              <%=trip.description%>
               <a href="/user/created/<%= trip._id %>/update">
                 Update
               </a>

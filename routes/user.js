@@ -1,7 +1,12 @@
 const express = require('express');
 const Trip = require('../models/trip');
+const User = require('../models/user');
+const middlewares = require('../middlewares');
+
 
 const router = express.Router();
+
+router.use(middlewares.protectedRoute);
 
 // router.use(function timeLog (req, res, next) {
 //     console.log('Time: ', Date.now())
@@ -35,18 +40,34 @@ router.get('/trips/:id', async (req, res, next) => {
   }  
 });
 
+/*nakonfigurovat list of participants*/
 router.post('/trips/:id', (req, res, next) => {
-  const UserId = req.session.currentUser._id;
+  const userId = res.locals.currentUser._id;
   const { id } = req.params;
-  Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: UserId }})
-    .then((trips) => {
-      console.log(trips);
-      res.render('/index');
+  const user = res.locals.currentUser;
+  Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: userId }})
+  User.findByIdAndUpdate(userId, {$push: { tripJoined: id }})
+    .then(() => {
+      res.render('user/user');
     })
     .catch((error) => {
       next(error);
     })
-});
+  })  
+  
+router.get('/joined', (req, res, next) => {
+  const userId = res.locals.currentUser._id;
+  const tripJoined = res.locals.currentUser.tripJoined;
+  const user = User.findById(userId).populate('tripJoined')
+    .then((user) => {
+      console.log(user);
+      res.render('trips/joined', { tripJoined, user })
+   })
+   .catch((error) => {
+    next(error);
+   })
+})
+
 
 router.get('/created', (req, res, next) => {
   const userID = res.locals.currentUser._id;
@@ -94,6 +115,7 @@ router.post('/created/:id/delete', (req, res, next) => {
      next(error);
    });
 });
+
  
 router.get('/new', (req, res, next) => {
     const userID = res.locals.currentUser._id;
@@ -103,7 +125,7 @@ router.get('/new', (req, res, next) => {
 
 /*doesn´t save tripCategory*/
 router.post('/new', (req, res, next) => {
-    const { tripCategory, tripName, description, duration, petfriendly, difficulty } = req.body;
+    const { tripCategory, tripName, description, duration, necessaryEquipment, petfriendly, difficulty } = req.body;
     const userID = req.session.currentUser._id;
     const listOfParticipants = req.session.currentUser._id;
     Trip.create({
@@ -111,6 +133,7 @@ router.post('/new', (req, res, next) => {
       tripName,
       description,
       duration,
+      necessaryEquipment,
       petfriendly,
       difficulty,
       userID,
@@ -123,5 +146,34 @@ router.post('/new', (req, res, next) => {
         next(error);
       });
   });
+
+router.get('/profile', (req, res, next) => {
+  const user = req.session.currentUser;
+  User.find(user)
+    .then ((user) => {
+      res.render('user/profile', {user});
+    })
+    .catch((error) => {
+      next(error);
+    })
+})
+
   
 module.exports = router;
+
+/*
+get  
+
+User.find 
+.populate(trip)
+.then(user)
+
+USER {
+  USERNAME:
+  kjakjfd:
+  trip: [{Objectid, ref: Trip}];
+}
+
+*/
+
+/*user.trip[0].name */

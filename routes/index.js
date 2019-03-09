@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const saltRounds = 10;
 const router = express.Router();
+const middlewares = require('../middlewares');
+
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -10,11 +12,11 @@ router.get('/', (req, res, next) => {
 });
 
 // SIGN UP !
-router.get('/signup', (req, res, next) => {
+router.get('/signup', middlewares.anonRoute, (req, res, next) => {
   res.render('auth/signup', /*{ errorMessage: req.flash('error') }*/);
 });
   
-router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
+router.post('/signup', middlewares.anonRoute, (req, res, next) => {
   const { username, surname, firstName, password, email } = req.body;
 
   if (username === '' || password === '') {
@@ -42,11 +44,11 @@ router.post('/signup', /*middlewares.anonRoute,*/ (req, res, next) => {
 });
 
 // LOGIN!!
-router.get('/login', (req, res, next) => {
+router.get('/login', middlewares.anonRoute, (req, res, next) => {
   res.render('auth/login');
 });
 
-router.post('/login', /*middlewares.anonRoute,*/ (req, res, next) => {
+router.post('/login', middlewares.anonRoute, (req, res, next) => {
   const { username, password } = req.body;
   if (username === '' || password === '') {
     //req.flash('error', 'no empty fields');

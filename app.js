@@ -7,6 +7,7 @@ const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+/*const { notifications } = require('./middlewares');*/
 const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes/index');
