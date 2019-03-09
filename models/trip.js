@@ -15,7 +15,7 @@ const tripSchema = new Schema({
         type: ObjectId,
         ref: 'User',
     },
-    necessaryEquipment: [String],
+    necessaryEquipment: String,
     petfriendly: Boolean,
     geolocation: String,
 });

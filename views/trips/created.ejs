@@ -10,11 +10,19 @@
           <img src="/img/ICE.jpg" class="card-img" alt="...">
         <div class="card-img-overlay">
           <h3 class="card-title" id="card-text" ><%=trip.tripName%></h3>
+          <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
         </div>
         <ul class="list-group list-group-flush">
+          
           <li class="list-group-item">
             <textarea rows="3"><%= trip.description %></textarea>
           </li>
+          <li class="list-group-item">
+              <textarea rows="1"><%= trip.difficulty %></textarea>
+            </li>
+            <li class="list-group-item">
+                <textarea rows="1"><%= trip.necessaryEquipment %></textarea>
+              </li>
         </ul>
         </div>
         <div id="center-btn">
