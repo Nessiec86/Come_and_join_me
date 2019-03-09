@@ -109,7 +109,7 @@ router.post('/created/:id/delete', (req, res, next) => {
   const { id } = req.params;
   Trip.findByIdAndRemove(id)
    .then((trip) => {
-     res.render('user/user', { userID });
+    res.render('user/user', { userID });
    })
    .catch((error) => {
      next(error);

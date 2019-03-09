@@ -1,21 +1,20 @@
 <%- include('../partials/nav') %>
-
 <div>
-    Avatar IMG
+  <div class="avatar">
+  </div>
+  <form action="/user/trips" method="GET">
+      <button type="submit" class="btn btn-info">Search a Trip</button>
+    </form>
+    <form action="/user/joined" method="GET">
+      <button type="submit" class="btn btn-info">Joined Trips</button>
+    </form>
+    <form action="/user/new" method="GET">
+      <button type="submit" class="btn btn-info">Create a Trip</button>
+    </form>
+    <form action="/user/created" method="GET">
+      <button type="submit" class="btn btn-info">Trips I created</button>
+    </form>
+    <form action="/user/profile" method="GET">
+      <button type="submit" class="btn btn-info">Check your profile</button>
+    </form>
 </div>
-
-<form action="/user/trips" method="GET">
-    <button type="submit">Search a Trip</button>
-  </form>
-  <form action="/user/joined" method="GET">
-    <button type="submit">Joined Trips</button>
-  </form>
-  <form action="/user/new" method="GET">
-    <button type="submit">Create a Trip</button>
-  </form>
-  <form action="/user/created" method="GET">
-    <button type="submit">Trips I created</button>
-  </form>
-  <form action="/user/profile" method="GET">
-    <button type="submit">Check your profile</button>
-  </form>

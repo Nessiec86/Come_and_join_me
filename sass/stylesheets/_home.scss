@@ -1,0 +1,22 @@
+body {
+    .home {
+        img{
+            max-width: 100%;
+            
+        }
+        .tittle {
+            margin: 0 auto;
+            width: 100%;
+            display: block;
+            padding: 0 0 50% 0;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            padding: 2% 0;
+        }
+        button {
+            margin: 1rem;
+        }
+    }
+}

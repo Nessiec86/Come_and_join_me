@@ -1,18 +1,35 @@
 <%- include('../partials/nav') %>
-
-<h2>Trips I created</h2>
+<div id="footer">
+  <h2>Trips I created</h2>
+</div>
 <div>
-  <ul>
-      <% trips.forEach((trip) => { %>
-          <li>                  
-              <%=trip.tripName%>
-              <%=trip.description%>
-              <a href="/user/created/<%= trip._id %>/update">
-                Update
-              </a>
-              <form action="/user/created/<%= trip._id %>/delete" method="post">
-                <input type="submit" value="delete">
-              </form>
-          </li><% }) %>
+  <ul class="list-group list-group-flush">
+    <% trips.forEach((trip) => { %>
+      <li class="list-group" id="li-card">
+        <div class="card" style="width: 21rem;">
+          <img src="/img/ICE.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h3 class="card-title" id="card-text" ><%=trip.tripName%></h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <textarea rows="3"><%= trip.description %></textarea>
+          </li>
+        </ul>
+        </div>
+        <div id="center-btn">
+          <div>
+            <form action="/user/created/<%= trip._id %>/update" method="GET">
+              <button class="btn btn-warning" id="back" type="submit">Update</button>
+            </form>
+          </div>
+          <div>
+            <form action="/user/created/<%= trip._id %>/delete" method="post">
+              <button class="btn btn-danger" id="back" type="submit">Delete</button>
+            </form>
+          </div>
+        </div>
+      </li>
+    <% }) %>
   </ul>
 </div>

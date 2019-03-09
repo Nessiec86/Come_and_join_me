@@ -35,6 +35,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(sassMiddleware({
+  src: path.join(__dirname, 'sass'),
+  dest: path.join(__dirname, 'public'),
+  indentedSyntax: false, // true = .sass and false = .scss
+  sourceMap: true, // true for .map; false no .map file
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   store: new MongoStore({
@@ -47,12 +53,6 @@ app.use(session({
   cookie: {
     maxAge: 24 * 60 * 60 * 1000,
   },
-}));
-app.use(sassMiddleware({
-  src: path.join(__dirname, 'public'),
-  dest: path.join(__dirname, 'public'),
-  indentedSyntax: false, // true = .sass and false = .scss
-	sourceMap: true, // true for .map; false no .map file
 }));
 
 app.use((req, res, next) => {

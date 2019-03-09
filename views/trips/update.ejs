@@ -1,9 +1,13 @@
 <%- include('../partials/nav') %>
-
-<h2>Update trip</h2>
-<form action="/user/created/<%= trip._id %>/update" method="post">
-  <label for="description">description</label>
-  <input type="text" name="description" id="description" value="<%= trip.description %>">
-  <input type="submit" value="update">
+<div id="footer">
+  <h2>Update trip</h2>
+</div>
+<form action="/user/created/<%= trip._id %>/update" method="POST">
+<div class="form-group">
+  <label for="description">Description</label>
+  <textarea class="form-control" name="description" rows="3"><%= trip.description %></textarea>
+</div> 
+  <button class="btn btn-warning" id="back" type="submit">Update</button>
 </form>
+  
 

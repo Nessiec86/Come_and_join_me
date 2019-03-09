@@ -30,7 +30,7 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
       } else {
         const salt = bcrypt.genSaltSync(saltRounds);
         const hashedPassword = bcrypt.hashSync(password, salt);
-        User.create({ username, surname, firstName, password: hashedPassword, email })
+        User.create({ username, firstName, surname, password: hashedPassword, email })
           .then(() => {
             res.redirect('/login');
           }).catch((error) => {

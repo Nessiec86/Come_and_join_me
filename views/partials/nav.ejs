@@ -1,10 +1,16 @@
-<nav>
+<nav class="navbar navbar-dark">
     <div>
-        <h3><%= currentUser.username %></h3>
+        <a class="navbar-brand" href="/user"><%= currentUser.username %></a>
+    </div>
+    <div class="navbar-nav">
+        <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
+    </div>
+    <div class="navbar-nav">    
+        <a class="nav-link" href="#">Return<span class="sr-only">(current)</span></a>
     </div>
     <div>
         <form action="/logout" method="get">
-            <button type="submit">LogOut</button>
+            <button type="submit" class="btn btn-warning">LogOut</button>
         </form>
     </div>
 </nav>
