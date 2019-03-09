@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark">
     <div>
         <a class="navbar-brand" href="/user"><%= currentUser.username %></a>
     </div>
@@ -10,7 +10,7 @@
     </div>
     <div>
         <form action="/logout" method="get">
-            <button type="submit">LogOut</button>
+            <button type="submit" class="btn btn-warning">LogOut</button>
         </form>
     </div>
 </nav>

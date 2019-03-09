@@ -1,30 +1,38 @@
 
 <%- include('../partials/nav') %>
-
-<h2>Create your own Trip</h2>
-
+<div id="footer">
+  <h2>Create your own Trip</h2>
+</div>
 <form action="/user/new" method="post">
-  <label>Set trip category</label>
-  <select id="test">
+  <div class="form-group">
+  <label for="tripCategory">Set trip category</label>
+  <select name="tripCategory" class="form-control">
     <% tripCategory.forEach((category, i) => { %>
-      <option value="<%= category[i] %>" ><%= category %></option>
+      <option><%= category %></option>
     <% }) %>
   </select>
-  
-  <label for="tripName">Trip Name</label>
-  <input type="text" name="tripName" id="tripName">
-  
-  <label for="description">Description</label>
-  <input type="text" name="description" id="description">
-  
-  <label for="duration">Duration</label>
-  <input type="text" name="duration" id="duration">
-  
-  <label for="petfriendly">Pet friendly</label>
-  <input type="text" name="petfriendly" id="petfriendly">
-  
-  <label for="difficulty">Dificulty</label>
-  <input type="text" name="difficulty" id="difficulty">
-  
-  <input type="submit" value="create">
+  </div>
+  <div class="form-group">
+    <label for="tripName">Trip Name</label>
+    <input type="text" class="form-control" name="tripName" id="tripName">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea class="form-control" name="description" rows="3"></textarea>
+  </div>  
+  <div class="form-group">
+    <label for="duration">Duration</label>
+    <input type="text" class="form-control" name="duration" id="duration">
+  </div>  
+  <div class="form-check" id="check">
+    <input class="form-check-input" type="checkbox" value="true" name="petfriendly" id="defaultCheck1">
+    <label class="form-check-label" for="defaultCheck1">
+      Pet friendly
+    </label>
+  </div>
+  <div class="form-group"> 
+    <label for="difficulty">Dificulty</label>
+    <input type="text" class="form-control" name="difficulty" id="difficulty">
+  </div>
+  <input type="submit" class="btn btn-success" id="create" value="create">
 </form>
