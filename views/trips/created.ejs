@@ -8,38 +8,39 @@
       <li class="list-group" id="li-card">
         <div class="card" style="width: 21rem;">
           <img src="/img/ICE.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
+        <div class="card-img-overlay" id="text-card">
           <h3 class="card-title" id="card-text" ><%=trip.tripName%></h3>
           <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
-            <textarea rows="3"><%= trip.duration %></textarea>
-          </li>
-
-          <li class="list-group-item">
-            <textarea rows="3"><%= trip.description %></textarea>
+            <h6>Description:</h6>
+            <textarea><%= trip.description %></textarea>
           </li>
           <li class="list-group-item">
-              <textarea rows="1"><%= trip.difficulty %></textarea>
-            </li>
-            <li class="list-group-item">
-                <textarea rows="1"><%= trip.necessaryEquipment %></textarea>
-              </li>
+            <h6>Difficulty:</h6>
+            <p><%= trip.difficulty %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>Duration:</h6>
+            <p><%= trip.duration %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>Necessary equipment:</h6>
+           <p><%= trip.necessaryEquipment %></p>
+          </li>
         </ul>
         </div>
         <div id="center-btn">
-          <div>
-            <form action="/user/created/<%= trip._id %>/update" method="GET">
-              <button class="btn btn-warning" id="back" type="submit">Update</button>
-            </form>
-          </div>
-          <div>
-            <form action="/user/created/<%= trip._id %>/delete" method="POST">
-              <button class="btn btn-danger" id="back" type="submit">Delete</button>
-            </form>
-          </div>
         </div>
+            <div class="btn-update">
+              <form action="/user/created/<%= trip._id %>/update" method="GET">
+                <button class="btn btn-warning" id="btns" type="submit">Update</button>
+              </form>
+              <form action="/user/created/<%= trip._id %>/delete" method="POST">
+                <button class="btn btn-danger" id="btns" type="submit">Delete</button>
+              </form>
+            </div>
       </li>
     <% }) %>
   </ul>

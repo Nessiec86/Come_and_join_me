@@ -3,30 +3,42 @@
 <div id="footer">
   <h2>Create your own Trip</h2>
 </div>
-<form action="/user/new" method="post">
+<form class="needs-validation" novalidate action="/user/new" method="post">
   <div class="form-group">
-  <label for="tripCategory">Set trip category</label>
-  <select name="tripCategory" class="form-control">
+  <label for="validationCustom01">Set trip category</label>
+  <select name="tripCategory" class="form-control" id="validationCustom01" required>
     <% tripCategory.forEach((category, i) => { %>
       <option><%= category %></option>
     <% }) %>
   </select>
   </div>
   <div class="form-group">
-    <label for="tripName">Trip Name</label>
-    <input type="text" class="form-control" name="tripName" id="tripName">
+    <label for="validationCustom02">Trip Name</label>
+    <input type="text" class="form-control" name="tripName" id="validationCustom02" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
   </div>
   <div class="form-group">
-    <label for="description">Description</label>
-    <textarea class="form-control" name="description" rows="3"></textarea>
+    <label for="validationCustom03">Description</label>
+    <textarea class="form-control" name="description" rows="3" id="validationCustom03" required></textarea>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
   </div>  
   <div class="form-group">
     <label for="duration">Duration</label>
     <input type="text" class="form-control" name="duration" id="duration">
+    <div class="valid-feedback">
+        Looks good!
+    </div>
   </div>  
   <div class="form-group">
-    <label for="necessaryEquipment">necessaryEquipment</label>
-    <input type="text" class="form-control" name="necessaryEquipment" id="necessaryEquipment">
+    <label for="validationCustom04">Necessary equipment</label>
+    <input type="text" class="form-control" name="necessaryEquipment" id="validationCustom04" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
   </div> 
   <div class="form-check" id="check">
     <input class="form-check-input" type="checkbox" value="true" name="petfriendly" id="defaultCheck1">
@@ -35,8 +47,11 @@
     </label>
   </div>
   <div class="form-group"> 
-    <label for="difficulty">Dificulty</label>
-    <input type="text" class="form-control" name="difficulty" id="difficulty">
+    <label for="validationCustom05">Dificulty</label>
+    <input type="text" class="form-control" name="difficulty" id="validationCustom05" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
   </div>
-  <input type="submit" class="btn btn-success" id="create" value="create">
+  <input type="submit" class="btn btn-success" id="create" value="create" >
 </form>

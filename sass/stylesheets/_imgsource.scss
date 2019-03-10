@@ -1,0 +1,14 @@
+
+@import'../routes/user.js'
+
+$trip: trip.tripCategory;
+$snow: background-image: url(/public/img/SNOW.jpg);
+$climbing: background-image: url(/public/img/CLIMB.jpg);
+
+$img {
+    @if ($trip === 'Sky/Snow') {
+    $snow;
+    } @else if ($trip === 'Climbing'){
+    $climbing;
+    }
+}

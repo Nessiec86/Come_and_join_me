@@ -5,8 +5,10 @@
     <div class="navbar-nav">
         <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
     </div>
-    <div class="navbar-nav">    
-        <a class="nav-link" href="#">Return<span class="sr-only">(current)</span></a>
+    <div class="navbar-nav">
+        <form>
+            <input type="button" class="nav-link" value="Return" onClick="javascript:history.go(-1)" />
+        </form>
     </div>
     <div>
         <form action="/logout" method="get">
