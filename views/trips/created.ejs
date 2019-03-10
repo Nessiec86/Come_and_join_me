@@ -13,7 +13,10 @@
           <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
         </div>
         <ul class="list-group list-group-flush">
-          
+          <li class="list-group-item">
+            <textarea rows="3"><%= trip.duration %></textarea>
+          </li>
+
           <li class="list-group-item">
             <textarea rows="3"><%= trip.description %></textarea>
           </li>
@@ -32,7 +35,7 @@
             </form>
           </div>
           <div>
-            <form action="/user/created/<%= trip._id %>/delete" method="post">
+            <form action="/user/created/<%= trip._id %>/delete" method="POST">
               <button class="btn btn-danger" id="back" type="submit">Delete</button>
             </form>
           </div>

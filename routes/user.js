@@ -82,9 +82,10 @@ router.get('/created', (req, res, next) => {
 
 router.get('/created/:id/update', (req, res, next) => {
   const { id } = req.params;
+  const tripCategory = Trip.schema.obj.tripCategory.enum;
   Trip.findById(id)
     .then((trip) => {
-      res.render('trips/update', { trip });
+      res.render('trips/update', { trip, tripCategory });
     })
     .catch((error) => {
       next(error);
@@ -94,8 +95,8 @@ router.get('/created/:id/update', (req, res, next) => {
 router.post('/created/:id/update', (req, res, next) => {
   const userID = res.locals.currentUser._id;
   const { id } = req.params;
-  const { description } = req.body;
-  Trip.findByIdAndUpdate(id, { description })
+  const { tripCategory, tripName, description, duration, necessaryEquipment, petfriendly, difficulty } = req.body;
+  Trip.findByIdAndUpdate(id, { tripCategory, tripName, description, duration, necessaryEquipment, petfriendly, difficulty })
     .then((trip) => {
       res.render('user/user', { userID });
     })
@@ -158,22 +159,31 @@ router.get('/profile', (req, res, next) => {
     })
 })
 
+router.get('/profile/update', (req, res, next) => {
+  const user = req.session.currentUser;
+  Trip.find(user)
+    .then((user) => {
+      res.render('user/profileupdate', { user });
+    })
+    .catch((error) => {
+      next(error);
+    })
+})
+
+router.post('/profile/update', (req, res, next) => {
+  const userId = req.session.currentUser._id;
+  const { firstName, surname, email } = req.body;
+  User.findByIdAndUpdate(userId, { firstName, surname, email })
+    .then((userId) => {
+      res.render('user/profile');
+    })
+    .catch((error) => {
+      next(error);
+    })
+});
   
 module.exports = router;
 
-/*
-get  
 
-User.find 
-.populate(trip)
-.then(user)
-
-USER {
-  USERNAME:
-  kjakjfd:
-  trip: [{Objectid, ref: Trip}];
-}
-
-*/
 
 /*user.trip[0].name */

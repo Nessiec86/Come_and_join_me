@@ -2,9 +2,13 @@
 
 <div>
 <h2>Tu trip <%= trip.tripName %></h2>
+<p><%= trip.tripCategory %></p>
 <p><%= trip.description %></p>
+<p><%= trip.duration %></p>
+<p><%= trip.difficulty %></p>
+<p><%= trip.necessaryEquipment %></p>
+<p><%= trip.petfriendly %></p>
 <p>List of participants: 
-  
     <div>
         <ul>
             <% trip.listOfParticipants.forEach((participant) => { %>
@@ -17,6 +21,12 @@
 <form action="/user/trips/<%= trip._id %> " method="post">
   <button type="submit">Join</button>
 </form>
+</p>
 
 
 </div>
+
+
+  
+
+    

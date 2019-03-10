@@ -15,8 +15,8 @@ const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 
 
-//mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
-mongoose.connect(process.env.DB_URL)
+mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
+/*mongoose.connect(process.env.DB_URL)*/
   .then(() => {
     console.log('connected');
   })

@@ -3,9 +3,41 @@
   <h2>Update trip</h2>
 </div>
 <form action="/user/created/<%= trip._id %>/update" method="POST">
+
+  <div class="form-group">
+    <label for="tripCategory">Trip category</label>
+    <select name="tripCategory" class="form-control">
+      <% tripCategory.forEach((category, i) => { %>
+        <option><%= category %></option>
+      <% }) %>
+    </select>
+    </div>
+
+<div class="form-group">
+  <label for="tripName">Tripname</label>
+  <textarea class="form-control" name="tripName" rows="3"><%= trip.tripName %></textarea>
+</div> 
 <div class="form-group">
   <label for="description">Description</label>
   <textarea class="form-control" name="description" rows="3"><%= trip.description %></textarea>
+</div> 
+<div class="form-group">
+  <label for="duration">Duration</label>
+  <textarea class="form-control" name="duration" rows="3"><%= trip.duration %></textarea>
+</div> 
+<div class="form-group">
+  <label for="necessaryEquipment">Necessary Equipment</label>
+  <textarea class="form-control" name="necessaryEquipment" rows="3"><%= trip.necessaryEquipment %></textarea>
+</div> 
+<div class="form-check" id="check">
+  <input class="form-check-input" type="checkbox" value="true" name="petfriendly" id="defaultCheck1">
+  <label class="form-check-label" for="defaultCheck1">
+    Pet friendly
+  </label>
+</div>
+<div class="form-group">
+  <label for="difficulty">Difficulty</label>
+  <textarea class="form-control" name="difficulty" rows="3"><%= trip.difficulty %></textarea>
 </div> 
   <button class="btn btn-warning" id="back" type="submit">Update</button>
 </form>
