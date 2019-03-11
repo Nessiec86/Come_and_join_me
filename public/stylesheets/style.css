@@ -15,6 +15,24 @@ body {
     padding: 5% 0 0 0; }
   body #footer {
     padding: 5rem 0 0 0; }
+  body .card-img {
+    height: 13rem; }
+  body .black {
+    display: flex;
+    position: absolute;
+    opacity: 0.2;
+    width: 100%;
+    height: 13rem;
+    background-color: black; }
+  body .white {
+    width: 120%;
+    height: 14rem;
+    position: fixed;
+    border-radius: 50%;
+    margin: -3rem -3rem;
+    background-color: white; }
+  body .btn-success {
+    box-shadow: 1px 1px 1px 1px black; }
 
 .navbar {
   background-color: #0c3c6d;
@@ -22,22 +40,27 @@ body {
   width: 95%;
   z-index: 1; }
 
-body .home img {
-  max-width: 100%; }
-
-body .home .tittle {
-  margin: 0 auto;
-  width: 100%;
-  display: block;
-  padding: 0 0 50% 0; }
-
-body .home form {
-  display: flex;
-  justify-content: center;
-  padding: 2% 0; }
-
-body .home button {
-  margin: 1rem; }
+body .home {
+  background-image: url(/img/background.jpg);
+  background-size: cover; }
+  body .home img {
+    max-width: 100%; }
+  body .home .tittle {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+    padding: 0 0 50% 0; }
+  body .home form {
+    display: flex;
+    justify-content: center; }
+  body .home button {
+    margin: 1rem; }
+  body .home .btn-home-one {
+    margin: 0 auto;
+    padding: 20rem 0 0 0; }
+  body .home .btn-home-two {
+    margin: 0 auto;
+    padding: 1rem 0 10rem 0; }
 
 #login {
   margin: 15% auto 0 auto; }
@@ -49,13 +72,14 @@ body .home button {
   width: 6rem;
   height: 6rem;
   border-radius: 50%;
-  margin: 0 1rem; }
+  margin: 0 1rem;
+  box-shadow: 1px 1px 1px 1px black; }
 
 .icons {
   display: flex;
+  position: absolute;
   flex-direction: row;
-  flex-flow: wrap-reverse;
-  padding: 10rem 0 0 0; }
+  flex-flow: wrap-reverse; }
 
 .form-btn1 {
   margin: 1rem auto 0.5rem auto; }
@@ -63,13 +87,9 @@ body .home button {
 .form-btn {
   margin: 0.5rem 1.5rem 1rem 1.5rem; }
 
-.transparent {
-  border: 1px solid black;
-  border-radius: 50%; }
-
 .background img {
   width: 100%;
-  height: 200px; }
+  height: 17rem; }
 
 #check {
   padding: 1rem; }
@@ -112,6 +132,7 @@ body .home button {
 #btns {
   width: 5rem;
   height: 5rem;
-  border-radius: 50%; }
+  border-radius: 50%;
+  box-shadow: 1px 1px 1px 1px black; }
 
 /*# sourceMappingURL=style.css.map */

@@ -5,7 +5,7 @@ const { ObjectId } = Schema.Types;
 
 const tripSchema = new Schema({
     tripName: { type: String, required: true, default: 'new trip' },
-    tripCategory: { type: String, enum: ['Ski/Snow','Climbing','Canyoning','Hiking','MTB']},
+    tripCategory: { type: String, enum: ['Snow','Climbing','Canyoning','Hiking','MTB']},
     date: Date,
     duration: Number,
     description: String,

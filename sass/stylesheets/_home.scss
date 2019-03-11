@@ -1,8 +1,9 @@
 body {
     .home {
+        background-image: url(/img/background.jpg);
+        background-size: cover;
         img{
             max-width: 100%;
-            
         }
         .tittle {
             margin: 0 auto;
@@ -13,10 +14,17 @@ body {
         form {
             display: flex;
             justify-content: center;
-            padding: 2% 0;
         }
         button {
             margin: 1rem;
+        }
+        .btn-home-one {
+            margin: 0 auto;
+            padding: 20rem 0 0 0;
+        } 
+        .btn-home-two {
+            margin: 0 auto;
+            padding: 1rem 0 10rem 0;
         }
     }
 }
