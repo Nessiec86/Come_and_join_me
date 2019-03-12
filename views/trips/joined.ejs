@@ -8,7 +8,7 @@
         <% user.tripJoined.forEach((trip) => { %>
             <li class="list-group" id="li-card">
                 <div class="card" style="width: 21rem;">
-                    <div class="black">
+                    <div class="black"><a href='/user/trips/<%= trip._id %>' style="width: 100%; height: 13rem"></a>
                     </div>
                     <a href='/user/trips/<%= trip._id %>'><img src="/img/<%=trip.tripCategory%>.jpg" class="card-img" alt="..."></a>
                     <div class="card-img-overlay">

@@ -1,7 +1,7 @@
 <%- include('../partials/nav') %>
 
 <div id="footer">
-    <h2>Tu trip <%= trip.tripName %></h2>
+    <h2><%= trip.tripName %></h2>
 </div>
 <div>
     <ul class="list-group list-group-flush">
@@ -47,9 +47,11 @@
             </li>
           </ul>
         </div>
-        <form action="/user/trips/<%= trip._id %> " method="post">
-          <button type="submit"class="btn btn-success" id="join">Join</button>
-        </form>
+        <div class="btn-update">
+          <form action="/user/trips/<%= trip._id %> " method="post">
+            <button type="submit"class="btn btn-success" id="join">Join</button>
+          </form>
+        </div>
       </li>
     </ul>
 </div>

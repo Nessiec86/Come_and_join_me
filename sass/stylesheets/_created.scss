@@ -1,6 +1,9 @@
 .btn-update{
     display: flex;
     justify-content: space-around;
+    form {
+        width: unset;
+    }
 }
 #btns{
    width: 5rem;
@@ -8,3 +11,4 @@
    border-radius: 50%;
    box-shadow: 1px 1px 1px 1px black;
 }
+
