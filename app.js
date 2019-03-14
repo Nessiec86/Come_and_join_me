@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 /*const { notifications } = require('./middlewares');*/
 const sassMiddleware = require('node-sass-middleware');
+// const multer = require('multer');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -43,6 +44,12 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true, // true for .map; false no .map file
 }));
+// app.use(multer({
+//   dest: path.join(__dirname, 'uploads')
+  // rename: function (fieldname, filename) {
+  //   return filename;
+  // },
+//  }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   store: new MongoStore({
@@ -62,6 +69,7 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser;
   next();
 });
+
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);

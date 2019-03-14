@@ -1,6 +1,7 @@
 const express = require('express');
 const Trip = require('../models/trip');
 const User = require('../models/user');
+// const Img = require('../models/img');
 const middlewares = require('../middlewares');
 
 
@@ -182,6 +183,13 @@ router.post('/profile/update', (req, res, next) => {
     })
 });
   
+// router.post('/profile/photo', function(req, res, next){
+//   const newImg = new Img();
+//   newImg.img.data = fs.readFileSync(req.files.userPhoto.path)
+//   newImg.img.contentType = 'image/png';
+//   newImg.save();
+//  });
+
 module.exports = router;
 
 

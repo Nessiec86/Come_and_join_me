@@ -29,6 +29,7 @@
     "sass": "^1.17.2"
   },
   "devDependencies": {
-    "bootstrap": "^4.3.1"
+    "bootstrap": "^4.3.1",
+    "multer": "^1.4.1"
   }
 }
