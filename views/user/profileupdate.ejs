@@ -2,15 +2,22 @@
 <div id="footer">
   <h2>Update your profile</h2>
 </div>
-<form action="/user/profile/update" method="POST">
-<div class="form-group">
-  <label for="firstName">firstName</label>
-  <textarea class="form-control" name="firstName" rows="3"><%= currentUser.firstName %></textarea>
-  <label for="surname">surname</label>
-  <textarea class="form-control" name="surname" rows="3"><%= currentUser.surname %></textarea>
-  <label for="email">email</label>
-  <textarea class="form-control" name="email" rows="3"><%= currentUser.email %></textarea>
-</div> 
-  <button class="btn btn-warning" id="back" type="submit">Update</button>
+<form>
+  <div class="form-group">
+    <label for="firstName"><h6>FirstName</h6></label><br>
+    <textarea class="form-control" name="firstName" rows="3"><%= currentUser.firstName %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="surname"><h6>Surname</h6></label><br>
+    <textarea class="form-control" name="surname" rows="3"><%= currentUser.surname %></textarea>
+  </div>
+  <div class="form-group">
+    <label for="email"><h6>Email</h6></label><br>
+    <textarea class="form-control" name="email" rows="3"><%= currentUser.email %></textarea>
+  </div> 
 </form>
-  
+<form action="/user/profile/update" method="POST">
+  <div class="btn-update">
+    <button class="btn btn-warning" id="btns" type="submit">Update</button>
+  </div>
+</form>

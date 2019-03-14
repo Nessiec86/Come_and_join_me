@@ -1,22 +1,39 @@
 <%- include('../partials/nav') %>
 
-
-<div>
-  <%= currentUser.username %>
+<div id="footer">
+  <h2>Wellcome</h2>
 </div>
-<div>
-  <%= currentUser.firstName %>
+<div class="avatar">
+  
 </div>
-<div>
-  <%= currentUser.surname %>
-</div>
-<div>
-  <%= currentUser.email %>
-</div>
-
-
-<div>
-  <form action="/user/profile/update" method="GET">
-    <button class="xxx" id="xxx" type="submit">Update</button>
-  </form>
-</div>
+<form>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label><h6>User</h6></label><br>
+      <p class="form-control"><%= currentUser.username %></p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label><h6>First name</h6></label><br>
+        <p class="form-control"><%= currentUser.firstName %></p>
+      </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label><h6>Surname</h6></label><br>
+      <p class="form-control"><%= currentUser.surname %></p>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label><h6>E-mail</h6></label><br>
+      <p class="form-control"><%= currentUser.email %></p>
+    </div>
+  </div>
+</form>
+<form action="/user/profile/update" method="GET">
+  <div class="btn-update">
+    <button class="btn btn-warning" id="btns" type="submit">Update</button>
+  </div>
+</form>

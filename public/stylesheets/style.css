@@ -23,18 +23,18 @@ body {
     height: 13rem;
     background-color: black; }
   body .white {
-    width: 120%;
-    height: 14rem;
-    position: sticky;
+    width: 100%;
+    height: 7rem;
+    position: relative;
     border-radius: 50%;
-    margin: -3.1rem -2.3rem;
+    margin: -3.1rem auto;
     background-color: white; }
   body .btn-success {
-    box-shadow: 1px 1px 1px 1px black; }
+    box-shadow: 1px 1px 10px 1px black; }
 
 .navbar {
   background-color: #0c3c6d;
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 1; }
 
@@ -72,14 +72,14 @@ body .home {
   height: 6rem;
   border-radius: 50%;
   margin: 0 1rem;
-  box-shadow: 1px 1px 1px 1px black; }
+  box-shadow: 1px 1px 10px 1px black; }
 
 .icons {
   display: flex;
   position: absolute;
   flex-direction: row;
   flex-flow: wrap-reverse;
-  margin: -7rem 0 0 0.3rem; }
+  margin: -1rem auto; }
 
 .form-btn1 {
   margin: 1rem auto 0.5rem auto;
@@ -137,6 +137,14 @@ body .home {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  box-shadow: 1px 1px 1px 1px black; }
+  box-shadow: 1px 1px 10px 1px black; }
+
+body .avatar {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+  border: 5px solid royalblue;
+  padding: 2px;
+  margin: 2rem auto; }
 
 /*# sourceMappingURL=style.css.map */
