@@ -38,9 +38,9 @@
                 <h6>List of participants:</h6>
                 <div>
                   <ul>
-                    <% trip.listOfParticipants.forEach((participant) => { %>
+                    <% usernames.forEach((participant) => { %>
                       <li>                  
-                        <%= participant.username %> 
+                        <%= participant %> 
                       </li><% }) %>
                   </ul>
                 </div>
@@ -50,6 +50,9 @@
         <div class="btn-update">
           <form action="/user/trips/<%= trip._id %> " method="post">
             <button type="submit"class="btn btn-success" id="join">Join</button>
+          </form>
+          <form action="/user/joined/<%= trip._id %>/remove" method="post">
+            <button type="submit"class="btn btn-warning" id="join">Remove</button>
           </form>
         </div>
       </li>

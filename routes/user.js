@@ -31,44 +31,107 @@ router.get('/trips', (req, res, next) => {
     })
 });
 
+// router.get('/trips/:id', async (req, res, next) => {
+//   const { id } = req.params;
+//   try {
+//     const trip = await Trip.findById(id);
+//     res.render('trips/trip', { trip });
+//   } catch (error) {
+//     next(error);
+//   }  
+// });
+
+// Nueva
 router.get('/trips/:id', async (req, res, next) => {
   const { id } = req.params;
+  console.log('ok', id);
+  let usernames = [];
+ 
   try {
-    const trip = await Trip.findById(id);
-    res.render('trips/trip', { trip });
+    const allUsers = await User.find()
+    allUsers.forEach(user => {
+      user.tripJoined.forEach(trip => {
+        if (trip == id) {
+          console.log(user.username);
+          usernames.push(user.username)
+        }
+      })
+    })
+    Trip.findById(id).then(trip => {
+      console.log('TRIP: ', trip)
+      res.render('trips/trip', { allUsers, id, trip, usernames });
+    })
+ 
   } catch (error) {
     next(error);
-  }  
-});
+  }
+ });
 
-/*nakonfigurovat list of participants*/
+
+// /*nakonfigurovat list of participants*/
+// router.post('/trips/:id', (req, res, next) => {
+//   const userId = res.locals.currentUser._id;
+//   const { id } = req.params;
+//   const user = res.locals.currentUser;
+//   Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: userId }})
+//   User.findByIdAndUpdate(userId, {$push: { tripJoined: id }})
+//     .then(() => {
+//       res.render('user/user');
+//     })
+//     .catch((error) => {
+//       next(error);
+//     })
+//   }) 
+
 router.post('/trips/:id', (req, res, next) => {
   const userId = res.locals.currentUser._id;
-  const { id } = req.params;
+  const {id} = req.params;
   const user = res.locals.currentUser;
-  Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: userId }})
   User.findByIdAndUpdate(userId, {$push: { tripJoined: id }})
-    .then(() => {
-      res.render('user/user');
-    })
+  .then((id) => {
+         res.redirect('/user/joined');
+        })
     .catch((error) => {
       next(error);
     })
-  })  
+  })
   
+// router.get('/joined', (req, res, next) => {
+//   const userId = res.locals.currentUser._id;
+//   const tripJoined = res.locals.currentUser.tripJoined;
+//   const user = User.findById(userId).populate('tripJoined')
+//     .then((user) => {
+//       console.log(user);
+//       res.render('trips/joined', { tripJoined, user })
+//    })
+//    .catch((error) => {
+//     next(error);
+//    })
+// })
+
 router.get('/joined', (req, res, next) => {
   const userId = res.locals.currentUser._id;
   const tripJoined = res.locals.currentUser.tripJoined;
   const user = User.findById(userId).populate('tripJoined')
     .then((user) => {
-      console.log(user);
       res.render('trips/joined', { tripJoined, user })
    })
    .catch((error) => {
     next(error);
    })
-})
+ })
 
+ router.post('/joined/:id/remove', async (req, res, next) => {
+  const { id } = req.params;
+  const userId = req.session.currentUser._id;
+  try {
+    await
+    User.findByIdAndUpdate(userId, { $pull: { tripJoined: id }})
+    res.redirect('/user/joined');
+  } catch (error) {
+      next(error);
+    }
+ })
 
 router.get('/created', (req, res, next) => {
   const userID = res.locals.currentUser._id;
