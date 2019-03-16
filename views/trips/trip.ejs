@@ -11,7 +11,7 @@
         </div>
         <img src="/img/<%=trip.tripCategory%>.jpg" class="card-img" alt="...">
         <div class="card-img-overlay">
-          <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
+          <h3 class="card-title" id="card-text" ><%= trip.tripCategory %></h3>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
@@ -24,7 +24,7 @@
           </li>
           <li class="list-group-item">
             <h6>Duration:</h6>
-            <p><%= trip.duration %></p>
+            <p>Hours:<%= trip.duration.hours %>, Minuts:<%= trip.duration.mins %></p>
           </li>
           <li class="list-group-item">
             <h6>Necessary equipment:</h6>

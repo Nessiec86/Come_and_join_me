@@ -31,15 +31,6 @@ router.get('/trips', (req, res, next) => {
     })
 });
 
-// router.get('/trips/:id', async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     const trip = await Trip.findById(id);
-//     res.render('trips/trip', { trip });
-//   } catch (error) {
-//     next(error);
-//   }  
-// });
 
 // Nueva
 router.get('/trips/:id', async (req, res, next) => {
@@ -68,20 +59,7 @@ router.get('/trips/:id', async (req, res, next) => {
  });
 
 
-// /*nakonfigurovat list of participants*/
-// router.post('/trips/:id', (req, res, next) => {
-//   const userId = res.locals.currentUser._id;
-//   const { id } = req.params;
-//   const user = res.locals.currentUser;
-//   Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: userId }})
-//   User.findByIdAndUpdate(userId, {$push: { tripJoined: id }})
-//     .then(() => {
-//       res.render('user/user');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     })
-//   }) 
+
 
 router.post('/trips/:id', (req, res, next) => {
   const userId = res.locals.currentUser._id;
@@ -96,18 +74,6 @@ router.post('/trips/:id', (req, res, next) => {
     })
   })
   
-// router.get('/joined', (req, res, next) => {
-//   const userId = res.locals.currentUser._id;
-//   const tripJoined = res.locals.currentUser.tripJoined;
-//   const user = User.findById(userId).populate('tripJoined')
-//     .then((user) => {
-//       console.log(user);
-//       res.render('trips/joined', { tripJoined, user })
-//    })
-//    .catch((error) => {
-//     next(error);
-//    })
-// })
 
 router.get('/joined', (req, res, next) => {
   const userId = res.locals.currentUser._id;
@@ -187,9 +153,8 @@ router.get('/new', (req, res, next) => {
     const userID = res.locals.currentUser._id;
     const tripCategory = Trip.schema.obj.tripCategory.enum;
     const difficulty = Trip.schema.obj.difficulty.enum;
-    const hours = Trip.schema.obj.duration.hours;
-    const mins = Trip.schema.obj.duration.mins;
-    res.render('trips/new', { userID, tripCategory, difficulty, hours, mins });
+    const duration = Trip.schema.obj.duration;
+    res.render('trips/new', { userID, tripCategory, difficulty, duration });
 });
 
 /*doesn´t save tripCategory*/
@@ -202,8 +167,10 @@ router.post('/new', (req, res, next) => {
       tripName,
       date,
       description,
-      hours,
-      mins,
+      duration: {
+        hours,
+        mins
+      },
       necessaryEquipment,
       petfriendly,
       difficulty,
