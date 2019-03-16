@@ -20,6 +20,13 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="validationCustom07">Date</label>
+    <input type="date" class="form-control" name="date" id="validationCustom07" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+  </div>
+  <div class="form-group">
     <label for="validationCustom03">Description</label>
     <textarea class="form-control" name="description" rows="3" id="validationCustom03" required></textarea>
     <div class="valid-feedback">
@@ -27,10 +34,13 @@
     </div>
   </div>  
   <div class="form-group">
-    <label for="duration">Duration</label>
-    <input type="text" class="form-control" name="duration" id="duration">
-    <div class="valid-feedback">
+    <label for="duration.hours">Duration</label>
+    <div style="display:flex">
+    <input type="number" class="form-control" name="hours" id="hours" id="validationCustum06" required placeholder="hours">
+    <input type="number" class="form-control" name="mins" id="mins" id="validationCustum06" required placeholder="min">
+      <div class="valid-feedback">
         Looks good!
+    </div>
     </div>
   </div>  
   <div class="form-group">
@@ -47,11 +57,12 @@
     </label>
   </div>
   <div class="form-group"> 
-    <label for="validationCustom05">Dificulty</label>
-    <input type="text" class="form-control" name="difficulty" id="validationCustom05" required>
-    <div class="valid-feedback">
-        Looks good!
-    </div>
+    <label for="validationCustom05">Difficulty</label>
+    <select name="difficulty" class="form-control" id="validationCustom05" required>
+    <% difficulty.forEach((difficult, i) => { %>
+      <option><%= difficult %></option>
+    <% }) %>
+    </select>
   </div>
   <input type="submit" class="btn btn-success" id="create" value="create" >
 </form>

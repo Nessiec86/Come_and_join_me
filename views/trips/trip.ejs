@@ -4,59 +4,69 @@
     <h2><%= trip.tripName %></h2>
 </div>
 <div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group" id="li-card">
-          <div class="card" style="width: 21rem;">
-            <div class="black">
-            </div>
-            <img src="/img/<%=trip.tripCategory%>.jpg" class="card-img" alt="...">
-          <div class="card-img-overlay">
-            <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <h6>Description:</h6>
-              <textarea><%= trip.description %></textarea>
-            </li>
-            <li class="list-group-item">
-              <h6>Difficulty:</h6>
-              <p><%= trip.difficulty %></p>
-            </li>
-            <li class="list-group-item">
-              <h6>Duration:</h6>
-              <p><%= trip.duration %></p>
-            </li>
-            <li class="list-group-item">
-              <h6>Necessary equipment:</h6>
-             <p><%= trip.necessaryEquipment %></p>
-            </li>
-            <li class="list-group-item">
-                <h6>Pet friendly:</h6>
-               <p><%= trip.petfriendly %></p>
-            </li>
-            <li class="list-group-item">
-                <h6>List of participants:</h6>
-                <div>
-                  <ul>
-                    <% usernames.forEach((participant) => { %>
-                      <li>                  
-                        <%= participant %> 
-                      </li><% }) %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group" id="li-card">
+      <div class="card" style="width: 21rem;">
+        <div class="black">
+        </div>
+        <img src="/img/<%=trip.tripCategory%>.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h5 class="card-title" id="card-text" ><%=trip.tripCategory%></h3>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <h6>Description:</h6>
+            <textarea><%= trip.description %></textarea>
+          </li>
+          <li class="list-group-item">
+            <h6>Difficulty:</h6>
+            <p><%= trip.difficulty %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>Duration:</h6>
+            <p><%= trip.duration %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>Necessary equipment:</h6>
+            <p><%= trip.necessaryEquipment %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>Pet friendly:</h6>
+            <p><%= trip.petfriendly %></p>
+          </li>
+          <li class="list-group-item">
+            <h6>List of participants:</h6>
+          <div>
+            <ul>
+              <% usernames.forEach((participant) => { %>
+                <li>                  
+                  <%= participant %> 
+                    </li><% }) %>
                   </ul>
                 </div>
             </li>
-          </ul>
-        </div>
-        <div class="btn-update">
+        </ul>
+      </div>
+      <div class="btn-update">
+          <% if (usernames.length !== 0) {
+          usernames.forEach(participant => {
+          if (participant == currentUser.username) { %>
+            <form action="/user/joined/<%= trip._id %>/remove" method="POST">
+              <button type="submit"class="btn btn-warning" id="remove">Remove</button>
+            </form> <% }
+          else { %>
+            <form action="/user/trips/<%= trip._id %> " method="post">
+              <button type="submit" class="btn btn-success" id="join">Join</button>
+            </form>  <%}
+          } )
+          } else { %>
           <form action="/user/trips/<%= trip._id %> " method="post">
-            <button type="submit"class="btn btn-success" id="join">Join</button>
+            <button type="submit" class="btn btn-success" id="join">Join</button>
           </form>
-          <form action="/user/joined/<%= trip._id %>/remove" method="post">
-            <button type="submit"class="btn btn-warning" id="join">Remove</button>
-          </form>
-        </div>
-      </li>
-    </ul>
+        <% } %>
+      </div>
+    </li>
+  </ul>
 </div>
 
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark">
+<nav class="navbar navbar-dark bg-dark">
     <div>
         <a class="navbar-brand" href="/user"><%= currentUser.username %></a>
     </div>
@@ -6,13 +6,11 @@
         <a class="nav-link" href="/user">Home <span class="sr-only">(current)</span></a>
     </div>
     <div class="navbar-nav">
-        <form>
-            <input type="button" class="nav-link" value="Return" onClick="javascript:history.go(-1)" />
-        </form>
+        <a class="nav-link"value="Return" onClick="javascript:history.go(-1)">Return<span class="sr-only">(current)</span></a>
     </div>
     <div>
         <form action="/logout" method="get">
-            <button type="submit" class="btn btn-warning">LogOut</button>
+            <button type="submit" class="btn btn-outline-info my-2 my-sm-0">LogOut</button>
         </form>
     </div>
 </nav>
