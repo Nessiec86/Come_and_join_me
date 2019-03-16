@@ -1,25 +1,16 @@
 const express = require('express');
 const Trip = require('../models/trip');
 const User = require('../models/user');
-// const Img = require('../models/img');
 const middlewares = require('../middlewares');
-
 
 const router = express.Router();
 
 router.use(middlewares.protectedRoute);
 
-// router.use(function timeLog (req, res, next) {
-//     console.log('Time: ', Date.now())
-//     next()
-//    }) //crear carpeta de middlewares
-
-
 router.get('/', (req, res, next) => {
     const userID = res.locals.currentUser._id;
     res.render('user/user', { userID });
 });
-
 
 router.get('/trips', (req, res, next) => {
     Trip.find()
@@ -31,11 +22,8 @@ router.get('/trips', (req, res, next) => {
     })
 });
 
-
-// Nueva
 router.get('/trips/:id', async (req, res, next) => {
   const { id } = req.params;
-  console.log('ok', id);
   let usernames = [];
  
   try {
@@ -43,23 +31,17 @@ router.get('/trips/:id', async (req, res, next) => {
     allUsers.forEach(user => {
       user.tripJoined.forEach(trip => {
         if (trip == id) {
-          console.log(user.username);
           usernames.push(user.username)
         }
       })
     })
     Trip.findById(id).then(trip => {
-      console.log('TRIP: ', trip)
       res.render('trips/trip', { allUsers, id, trip, usernames });
-    })
- 
+    });
   } catch (error) {
     next(error);
   }
- });
-
-
-
+});
 
 router.post('/trips/:id', (req, res, next) => {
   const userId = res.locals.currentUser._id;
@@ -72,7 +54,7 @@ router.post('/trips/:id', (req, res, next) => {
     .catch((error) => {
       next(error);
     })
-  })
+})
   
 
 router.get('/joined', (req, res, next) => {
@@ -218,16 +200,6 @@ router.post('/profile/update', (req, res, next) => {
       next(error);
     })
 });
-  
-// router.post('/profile/photo', function(req, res, next){
-//   const newImg = new Img();
-//   newImg.img.data = fs.readFileSync(req.files.userPhoto.path)
-//   newImg.img.contentType = 'image/png';
-//   newImg.save();
-//  });
+
 
 module.exports = router;
-
-
-
-/*user.trip[0].name */

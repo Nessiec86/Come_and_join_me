@@ -10,14 +10,13 @@ const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 /*const { notifications } = require('./middlewares');*/
 const sassMiddleware = require('node-sass-middleware');
-// const multer = require('multer');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
 
 
-mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
-// mongoose.connect(process.env.DB_URL)
+// mongoose.connect('mongodb://localhost:27017/Trips', { useNewUrlParser: true })
+mongoose.connect(process.env.DB_URL)
   .then(() => {
     console.log('connected');
   })
@@ -44,12 +43,6 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true, // true for .map; false no .map file
 }));
-// app.use(multer({
-//   dest: path.join(__dirname, 'uploads')
-  // rename: function (fieldname, filename) {
-  //   return filename;
-  // },
-//  }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   store: new MongoStore({
@@ -63,20 +56,13 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000,
   },
 }));
-
 app.use((req, res, next) => {
   // app.locals.currentUser = req.session.currentUser;
   res.locals.currentUser = req.session.currentUser;
   next();
 });
-
-
 app.use('/', indexRouter);
 app.use('/user', userRouter);
-
-
-
-
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
