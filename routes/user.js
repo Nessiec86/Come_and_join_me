@@ -31,15 +31,6 @@ router.get('/trips', (req, res, next) => {
     })
 });
 
-// router.get('/trips/:id', async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     const trip = await Trip.findById(id);
-//     res.render('trips/trip', { trip });
-//   } catch (error) {
-//     next(error);
-//   }  
-// });
 
 // Nueva
 router.get('/trips/:id', async (req, res, next) => {
@@ -68,20 +59,7 @@ router.get('/trips/:id', async (req, res, next) => {
  });
 
 
-// /*nakonfigurovat list of participants*/
-// router.post('/trips/:id', (req, res, next) => {
-//   const userId = res.locals.currentUser._id;
-//   const { id } = req.params;
-//   const user = res.locals.currentUser;
-//   Trip.findByIdAndUpdate(id, {$push: { listOfParticipants: userId }})
-//   User.findByIdAndUpdate(userId, {$push: { tripJoined: id }})
-//     .then(() => {
-//       res.render('user/user');
-//     })
-//     .catch((error) => {
-//       next(error);
-//     })
-//   }) 
+
 
 router.post('/trips/:id', (req, res, next) => {
   const userId = res.locals.currentUser._id;
@@ -96,18 +74,6 @@ router.post('/trips/:id', (req, res, next) => {
     })
   })
   
-// router.get('/joined', (req, res, next) => {
-//   const userId = res.locals.currentUser._id;
-//   const tripJoined = res.locals.currentUser.tripJoined;
-//   const user = User.findById(userId).populate('tripJoined')
-//     .then((user) => {
-//       console.log(user);
-//       res.render('trips/joined', { tripJoined, user })
-//    })
-//    .catch((error) => {
-//     next(error);
-//    })
-// })
 
 router.get('/joined', (req, res, next) => {
   const userId = res.locals.currentUser._id;
@@ -147,9 +113,10 @@ router.get('/created', (req, res, next) => {
 router.get('/created/:id/update', (req, res, next) => {
   const { id } = req.params;
   const tripCategory = Trip.schema.obj.tripCategory.enum;
+  const difficulty = Trip.schema.obj.difficulty.enum;
   Trip.findById(id)
     .then((trip) => {
-      res.render('trips/update', { trip, tripCategory });
+      res.render('trips/update', { trip, tripCategory, difficulty });
     })
     .catch((error) => {
       next(error);
@@ -185,19 +152,25 @@ router.post('/created/:id/delete', (req, res, next) => {
 router.get('/new', (req, res, next) => {
     const userID = res.locals.currentUser._id;
     const tripCategory = Trip.schema.obj.tripCategory.enum;
-    res.render('trips/new', { userID, tripCategory });
+    const difficulty = Trip.schema.obj.difficulty.enum;
+    const duration = Trip.schema.obj.duration;
+    res.render('trips/new', { userID, tripCategory, difficulty, duration });
 });
 
 /*doesn´t save tripCategory*/
 router.post('/new', (req, res, next) => {
-    const { tripCategory, tripName, description, duration, necessaryEquipment, petfriendly, difficulty } = req.body;
+    const { tripCategory, tripName, description, hours, mins, necessaryEquipment, petfriendly, difficulty, date } = req.body;
     const userID = req.session.currentUser._id;
     const listOfParticipants = req.session.currentUser._id;
     Trip.create({
       tripCategory,
       tripName,
+      date,
       description,
-      duration,
+      duration: {
+        hours,
+        mins
+      },
       necessaryEquipment,
       petfriendly,
       difficulty,

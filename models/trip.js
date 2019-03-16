@@ -7,9 +7,9 @@ const tripSchema = new Schema({
     tripName: { type: String, required: true, default: 'new trip' },
     tripCategory: { type: String, enum: ['Snow','Climbing','Canyoning','Hiking','MTB']},
     date: Date,
-    duration: Number,
+    duration: { hours: Number, mins: Number },
     description: String,
-    difficulty: String,
+    difficulty: { type: String, enum: ['Beginner','Easy','Normal','Hard','Very hard']},
     listOfParticipants: [{type: ObjectId, ref: 'User'}],
     userID: {
         type: ObjectId,
