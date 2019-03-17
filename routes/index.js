@@ -1,9 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const middlewares = require('../middlewares');
 const saltRounds = 10;
 const router = express.Router();
-const middlewares = require('../middlewares');
 
 
 /* GET home page. */
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 
 // SIGN UP !
 router.get('/signup', middlewares.anonRoute, (req, res, next) => {
-  res.render('auth/signup', /*{ errorMessage: req.flash('error') }*/);
+  res.render('auth/signup', { errorMessage: req.flash('error') });
 });
   
 router.post('/signup', middlewares.anonRoute, (req, res, next) => {
@@ -25,7 +25,7 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
   User.findOne({ username })
     .then((user) => {
       if (user) {
-        //req.flash('error', 'el usuario no existe');
+        req.flash('error', 'el usuario no existe');
         res.redirect('/signup');
       } else {
         const salt = bcrypt.genSaltSync(saltRounds);
@@ -45,28 +45,27 @@ router.post('/signup', middlewares.anonRoute, (req, res, next) => {
 
 // LOGIN!!
 router.get('/login', middlewares.anonRoute, (req, res, next) => {
-  res.render('auth/login');
+  res.render ('auth/login',{ errorMessage: req.flash('error') });
 });
 
 router.post('/login', middlewares.anonRoute, (req, res, next) => {
   const { username, password } = req.body;
   if (username === '' || password === '') {
-    //req.flash('error', 'no empty fields');
-    //req.flash('info', 'no empty fields');
+    req.flash('error', 'no empty fields');
+    req.flash('info', 'no empty fields');
     return res.redirect('/login');
   } else {
     User.findOne({ username })
       .then((user) => {
         if (!user) {
-         // req.flash('error', 'usuario no existe');
-         console.log('usuario no existe');
+          req.flash('error', 'usuario no existe');
           return res.redirect('/login');
         } else if (bcrypt.compareSync(password, user.password)) {
           req.session.currentUser = user;
-          //req.flash('success', 'usuario logeado correctamente');
+          req.flash('success', 'usuario logeado correctamente');
           res.redirect('/user');
         } else {
-          //req.flash('error', 'usuario incorrecto');
+          req.flash('error', 'contraseña incorrecta');
           return res.redirect('/login');
         }
       })

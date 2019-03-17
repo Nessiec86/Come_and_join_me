@@ -139,7 +139,6 @@ router.get('/new', (req, res, next) => {
     res.render('trips/new', { userID, tripCategory, difficulty, duration });
 });
 
-/*doesn´t save tripCategory*/
 router.post('/new', (req, res, next) => {
     const { tripCategory, tripName, description, hours, mins, necessaryEquipment, petfriendly, difficulty, date } = req.body;
     const userID = req.session.currentUser._id;
@@ -159,7 +158,8 @@ router.post('/new', (req, res, next) => {
       userID,
       listOfParticipants
     })
-      .then((createdObject) => {
+      .then((trip) => {
+        req.flash('success', 'Trip created!');
         res.render('user/user', { userID });
       })
       .catch((error) => {

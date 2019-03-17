@@ -2,14 +2,15 @@ require("dotenv").config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
-/*const { notifications } = require('./middlewares');*/
 const sassMiddleware = require('node-sass-middleware');
+const { notifications } = require('./middlewares');
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user');
@@ -26,6 +27,9 @@ mongoose.connect(process.env.DB_URL)
   });
 
 const app = express();
+
+
+app.locals.title = 'Come&Join';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -56,11 +60,13 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000,
   },
 }));
+app.use(flash());
 app.use((req, res, next) => {
   // app.locals.currentUser = req.session.currentUser;
   res.locals.currentUser = req.session.currentUser;
   next();
 });
+app.use(notifications);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 
