@@ -1,14 +1,11 @@
 <nav class="navbar navbar-dark bg-dark">
-    <div>
+    <div class="navbar-nav" style="margin:0 1.5rem">
+        <a class="nav-link"value="Return" onClick="javascript:history.go(-1)"><img src="/icons/button_arrow_left@2x.png" style="width:2rem; heigth:2rem;"><span class="sr-only">(current)</span></a>
+    </div>    
+    <div class="navbar-nav">
         <a class="navbar-brand" href="/user" style="color:#17a2b8"><%= currentUser.username %></a>
     </div>
     <div class="navbar-nav">
-        <a class="nav-link" href="/user"><img src="/icons/home@2x.png" style="width:2rem; heigth:2rem;"><span class="sr-only">(current)</span></a>
-    </div>
-    <div class="navbar-nav">
-        <a class="nav-link"value="Return" onClick="javascript:history.go(-1)"><img src="/icons/button_arrow_left@2x.png" style="width:2rem; heigth:2rem;"><span class="sr-only">(current)</span></a>
-    </div>
-    <div>
         <form action="/logout" method="get">
             <button type="submit" class="btn btn-outline-info my-2 my-sm-0">LogOut</button>
         </form>
