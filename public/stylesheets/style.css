@@ -31,6 +31,10 @@ body {
     background-color: white; }
   body .btn-success {
     box-shadow: 1px 1px 10px 1px black; }
+  body .logo {
+    width: 14rem;
+    position: absolute;
+    margin: -15rem auto; }
 
 .navbar {
   background-color: #0c3c6d;

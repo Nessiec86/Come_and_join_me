@@ -5,7 +5,7 @@ const { ObjectId } = Schema.Types;
 
 const tripSchema = new Schema({
     tripName: { type: String, required: true, default: 'new trip' },
-    tripCategory: { type: String, enum: ['Snow','Climbing','Canyoning','Hiking','MTB']},
+    tripCategory: { type: String, enum: ['Ski','Climbing','Canyoning','Hiking','MTB']},
     date: Date,
     duration: { hours: Number, mins: Number },
     description: String,
@@ -23,4 +23,3 @@ const tripSchema = new Schema({
 const Trip = mongoose.model('Trip', tripSchema);
 
 module.exports = Trip;
-//exportar en routes
