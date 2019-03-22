@@ -159,7 +159,6 @@ router.post('/new', (req, res, next) => {
       listOfParticipants
     })
       .then((trip) => {
-        req.flash('success', 'Trip created!');
         res.render('user/user', { userID });
       })
       .catch((error) => {
