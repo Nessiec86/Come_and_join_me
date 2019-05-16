@@ -226,7 +226,7 @@ The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/Nessiec86/Who_come)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://come-and-join-me.herokuapp.com/)
 
 ### Slides
 
